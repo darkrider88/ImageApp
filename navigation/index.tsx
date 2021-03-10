@@ -41,7 +41,7 @@ function RootNavigator() {
       <Stack.Screen name="Root"
        component={MainTabNavigator}
         options={{
-          title:'Aershoot',
+          title:'WhatsApp',
           headerRight: () => {
             return(
               <View style={{flexDirection:'row',width:90,justifyContent:'space-around',alignItems:'center'}}>
