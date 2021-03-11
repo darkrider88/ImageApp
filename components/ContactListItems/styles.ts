@@ -23,23 +23,15 @@ const styles = StyleSheet.create({
         // justifyContent:'center'
     },
     username: {
-        fontWeight: 'bold',
-        fontSize:18
+        fontWeight: '700',
+        fontSize:16
     },
-    lastMessage: {
-        fontSize:16,
+    status: {
+        fontSize:15,
         color: 'grey',
         width: widthOfMobile
     },
-    time: {
-        color:'grey',
-        fontSize:12,
-        paddingTop: 20,
-        paddingRight:10,
-        position:'absolute',
-        right:10,
-
-    }
+    
 });
 
 export default styles;

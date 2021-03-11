@@ -3,8 +3,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import { ColorSchemeName, View } from 'react-native';
 import Colors from '../constants/Colors';
-import { Octicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Octicons, MaterialCommunityIcons, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import NotFoundScreen from '../screens/NotFoundScreen';
+import ChatRoomScreen from '../screens/ChatRoomScreen'
+import ContactScreen from '../screens/ContactScreen'
 import { RootStackParamList } from '../types';
 import MainTabNavigator from './MainTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
@@ -15,7 +17,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      theme={DefaultTheme}>
       <RootNavigator />
     </NavigationContainer>
   );
@@ -42,16 +44,35 @@ function RootNavigator() {
        component={MainTabNavigator}
         options={{
           title:'WhatsApp',
+          headerTintColor: 'white',
           headerRight: () => {
             return(
               <View style={{flexDirection:'row',width:90,justifyContent:'space-around',alignItems:'center'}}>
               <Octicons name='search' size = {20} color = 'white'/>
+              
               <MaterialCommunityIcons name = 'dots-vertical' size={24} color = 'white'/>
             </View>
             )
           }
           }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      <Stack.Screen name="ChatRoomScreen"
+       component={ChatRoomScreen}
+        options={({route}) => ({
+          title: route.params.name,
+          headerTintColor: 'white',
+          headerRight: () => {
+            return(
+          <View style={{flexDirection:'row',width:120,justifyContent:'space-around',alignItems:'center'}}  >
+              <MaterialIcons name="call" size={22} color={'white'} />
+              <FontAwesome5 name="video" size={19} color={'white'} />
+              <MaterialCommunityIcons name="dots-vertical" size={22} color={'white'} />
+
+            </View>)
+          },
+          
+        })} />
+
+        <Stack.Screen name="Contacts" component={ContactScreen} options={{headerTintColor:'white'}} />
     </Stack.Navigator>
   );
 }
