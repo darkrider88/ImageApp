@@ -1,23 +1,24 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
 import { StyleSheet, FlatList, View} from 'react-native';
-
+import { API, graphqlOperation} from 'aws-amplify';
 import ContactListItem from '../components/ContactListItems';
+import { listUsers } from '../src/graphql/queries';
 
-const user = [{
-  id: 'user1',
-  name: 'John',
-  imageUri: 'https://www.w3schools.com/howto/img_avatar2.png',
-  status: 'world is good'
-},
-{
-  id: 'user2',
-  name: 'Boyy',
-  imageUri: 'https://www.w3schools.com/howto/img_avatar2.png',
-  status: 'Glitch in the Matrix'
-},
-]
 
 export default function ChatsScreen() {
+  const [user, setUser] = useState([]);
+  // fetching the users list from graphql api in aws
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await API.graphql(graphqlOperation(listUsers));
+        setUser(userData.data.listUsers.items)
+      } catch (error) {
+          console.error(error);
+      }
+    }
+    fetchUser();
+  },[])
     return (
       <View style={styles.container}>
         <FlatList 

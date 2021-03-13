@@ -51,7 +51,7 @@ function App() {
           id: userInfo.attributes.sub,
           name: userInfo.username,
           imageUri: getRandomImage(),
-          status: 'Hey, I am using App created by Shashwat',
+          status: 'hey there, you little cookie',
         }
 
         await API.graphql(graphqlOperation(createUser,{input: newUser}))
