@@ -7,7 +7,6 @@ import InputBox from '../components/InputBox';
 
 const ChatRoomScreen = () => {
     const route = useRoute();
-   console.log(route.params);
     return (
         <View style={{flex:1}}>
             
@@ -16,7 +15,7 @@ const ChatRoomScreen = () => {
                 renderItem={({item}) => <ChatMessage message={item}/>}
                 inverted
             />
-            <InputBox/>
+            <InputBox chatRoomID={route.params.id}/>
         </View>
     )
 }
