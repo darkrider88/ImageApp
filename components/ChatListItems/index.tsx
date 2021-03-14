@@ -13,7 +13,6 @@ const ChatListItem = (props: ChatListItemProps) => {
     const {chatRoom} = props;
     const navigation = useNavigation();
     
-    console.log("hey boy", chatRoom)
     const [otherUser, setOtherUser] = useState(null);
     useEffect(() => {
         const getOtherUser = async () => {
@@ -46,7 +45,7 @@ const ChatListItem = (props: ChatListItemProps) => {
                 </View>  
             </View>
             {/* {moment(chatRoom.lastMessage.createdAt).format("DD/MM/YYYY")} */}
-            <Text style={styles.time}>10:00</Text> 
+            <Text style={styles.time}>{moment(chatRoom.chatRoom.lastMessage.updatedAt).format("DD/MM/YYYY")}</Text> 
         </View>
         </TouchableOpacity>
     )

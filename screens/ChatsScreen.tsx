@@ -12,9 +12,7 @@ export default function ChatsScreen() {
     const fetchChatRooms = async () => {
         try {
             const userInfo = await Auth.currentAuthenticatedUser();
-            console.log('test')
             const userData = await API.graphql(graphqlOperation(getUser,{id: userInfo.attributes.sub}));
-            console.log("hey sexy", userData);
             setChatRooms(userData.data.getUser.chatRoomUser.items);
 
         } catch (e) {
