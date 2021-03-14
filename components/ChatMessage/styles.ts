@@ -7,10 +7,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#E5E4E2'
     },
     messageBox: {
-        
         borderRadius: 10,
         marginRight: 50,
         padding:10,
+        
     },
     name: {
         color: Colors.light.tint,

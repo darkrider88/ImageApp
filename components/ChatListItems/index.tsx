@@ -13,7 +13,7 @@ const ChatListItem = (props: ChatListItemProps) => {
     const {chatRoom} = props;
     const navigation = useNavigation();
     
-    
+    console.log("hey boy", chatRoom)
     const [otherUser, setOtherUser] = useState(null);
     useEffect(() => {
         const getOtherUser = async () => {
@@ -36,13 +36,13 @@ const ChatListItem = (props: ChatListItemProps) => {
         return null;
     } 
     return (
-        <TouchableOpacity onPress={onClick}>
+        <TouchableOpacity onPress={onClick}> 
         <View style={styles.container}>
             <View style={styles.leftContainer}>
                 <Image source={{uri: otherUser.imageUri}} style={styles.avatar}/>
                 <View style={styles.midContainer}>
                     <Text style={styles.username}>{otherUser.name}</Text>
-                    <Text numberOfLines={1}  style={styles.lastMessage}>Hardcoded message</Text> 
+                    <Text numberOfLines={1}  style={styles.lastMessage}>{chatRoom.chatRoom.lastMessage?`${chatRoom.chatRoom.lastMessage.user.name}: ${chatRoom.chatRoom.lastMessage.content}`:''}</Text> 
                 </View>  
             </View>
             {/* {moment(chatRoom.lastMessage.createdAt).format("DD/MM/YYYY")} */}

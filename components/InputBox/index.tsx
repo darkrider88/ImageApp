@@ -3,7 +3,7 @@ import React, { useState, useEffect} from 'react';
 import { View,TextInput, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import {Auth, graphqlOperation,API} from 'aws-amplify';
-import {createMessage} from '../../src/graphql/mutations'
+import {createMessage, updateChatRoom} from '../../src/graphql/mutations'
 
 
 const InputBox = (props) => {
@@ -15,6 +15,7 @@ const InputBox = (props) => {
             const userInfo = await Auth.currentAuthenticatedUser();
             setMyUserID(userInfo.attributes.sub);
         }
+        fetchUser();
     },[]);
 
     const onMicrophonePress = () => {
@@ -22,14 +23,24 @@ const InputBox = (props) => {
     }
 
     const onSendPress = async () => {
+        const updateChatroomLastMessage = async(messageID: string) => {
+            try {
+                await API.graphql(graphqlOperation(updateChatRoom, {input: {id: chatRoomID, lastMessageID: messageID}}));
+            } catch (e) {
+                
+            }
+
+        }
         try {
-            await API.graphql(graphqlOperation(createMessage,{input: {
+           const newMessageData = await API.graphql(graphqlOperation(createMessage,{input: {
                 content: message,
                 userID: myUserID,
                 chatRoomID:chatRoomID
-            }}))
-        } catch (e) {
+            }}));
+            await updateChatroomLastMessage(newMessageData.data.createMessage.id);
             
+        } catch (e) {
+            console.log(e);
         }
         setMessage('');
     }
