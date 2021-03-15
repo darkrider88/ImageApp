@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, FlatList, View} from 'react-native';
+import { StyleSheet, FlatList, View, Text} from 'react-native';
 import ChatListItem from '../components/ChatListItems';
 import NewMessageButton from '../components/NewMessageButton';
 import { API, graphqlOperation, Auth} from 'aws-amplify'
@@ -20,7 +20,9 @@ export default function ChatsScreen() {
         }
     }
     fetchChatRooms();
-}, [])
+}, []);
+
+
   return (
     <View style={styles.container}>
       <FlatList 

@@ -13,7 +13,7 @@ const ChatMessage = (props: ChatMessageProps) => {
     const isMyMessage = () =>{
         return message.user.id === myId;
     }
-    
+  
     return (
         <View style={styles.container}>
         <View style={[styles.messageBox,

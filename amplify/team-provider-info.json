@@ -1,19 +1,19 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-whatsappclone-dev-221030-authRole",
-      "UnauthRoleArn": "arn:aws:iam::673473752025:role/amplify-whatsappclone-dev-221030-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::673473752025:role/amplify-whatsappclone-dev-221030-authRole",
+      "AuthRoleName": "amplify-shader-dev-120535-authRole",
+      "UnauthRoleArn": "arn:aws:iam::673473752025:role/amplify-shader-dev-120535-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::673473752025:role/amplify-shader-dev-120535-authRole",
       "Region": "ap-south-1",
-      "DeploymentBucketName": "amplify-whatsappclone-dev-221030-deployment",
-      "UnauthRoleName": "amplify-whatsappclone-dev-221030-unauthRole",
-      "StackName": "amplify-whatsappclone-dev-221030",
-      "StackId": "arn:aws:cloudformation:ap-south-1:673473752025:stack/amplify-whatsappclone-dev-221030/aab1f0f0-8351-11eb-9ff2-0696e01d0e2e",
-      "AmplifyAppId": "d2blos695h39jv"
+      "DeploymentBucketName": "amplify-shader-dev-120535-deployment",
+      "UnauthRoleName": "amplify-shader-dev-120535-unauthRole",
+      "StackName": "amplify-shader-dev-120535",
+      "StackId": "arn:aws:cloudformation:ap-south-1:673473752025:stack/amplify-shader-dev-120535/a8a11f80-8558-11eb-9d50-0a6fe5c21f0a",
+      "AmplifyAppId": "d25ftagdmqyfbb"
     },
     "categories": {
       "auth": {
-        "whatsappcloneb9e3b338": {}
+        "shader1cbc0bda": {}
       }
     }
   }

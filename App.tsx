@@ -6,7 +6,7 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 
-import { withAuthenticator } from 'aws-amplify-react-native';
+import { withAuthenticator, } from 'aws-amplify-react-native';
 import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify';
 import { getUser } from './src/graphql/queries'
 import { createUser } from './src/graphql/mutations'

@@ -27,7 +27,7 @@ const InputBox = (props) => {
             try {
                 await API.graphql(graphqlOperation(updateChatRoom, {input: {id: chatRoomID, lastMessageID: messageID}}));
             } catch (e) {
-                
+                console.log(e);
             }
 
         }
@@ -60,6 +60,7 @@ const InputBox = (props) => {
                 style={styles.textInput} 
                 multiline
                 maxLength={3000}
+                value={message}
                 placeholder={'Type a message'}
                 onChangeText = {setMessage}
                 // scrollEnabled={true}

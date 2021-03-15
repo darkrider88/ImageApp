@@ -27,9 +27,9 @@ const ChatListItem = (props: ChatListItemProps) => {
         }
         getOtherUser();
     },[]);
-    
+ 
     const onClick = () => {
-        navigation.navigate('ChatRoomScreen', {id: chatRoom.id,name: otherUser.name});
+        navigation.navigate('ChatRoomScreen', {id: chatRoom.chatRoomID,name: otherUser.name});
      }
      if(!otherUser){
         return null;
