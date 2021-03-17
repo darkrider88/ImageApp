@@ -16,13 +16,18 @@ const ChatListItem = (props: ChatListItemProps) => {
     const [otherUser, setOtherUser] = useState(null);
     useEffect(() => {
         const getOtherUser = async () => {
-            const userInfo = await Auth.currentAuthenticatedUser();
-            
-            if(chatRoom.chatRoom.chatRoomUsers.items[0].user.id === userInfo.attributes.sub) {
-                setOtherUser(chatRoom.chatRoom.chatRoomUsers.items[1].user);
-            } else {
-                setOtherUser(chatRoom.chatRoom.chatRoomUsers.items[0].user);
+            try {
+                const userInfo = await Auth.currentAuthenticatedUser();
+                console.log("check: ", chatRoom.chatRoom.lastMessage.updatedAt); // do not remove this, app will crash
+                if(chatRoom.chatRoom.chatRoomUsers.items[0].user.id === userInfo.attributes.sub) {
+                    setOtherUser(chatRoom.chatRoom.chatRoomUsers.items[1].user);
+                } else {
+                    setOtherUser(chatRoom.chatRoom.chatRoomUsers.items[0].user);
+                }
+            } catch (e) {
+                console.log(e);
             }
+          
            
         }
         getOtherUser();

@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { View, Text,FlatList } from 'react-native'
 import {useRoute} from '@react-navigation/native';
-// import Chats from '../data/Chats';
 import ChatMessage from '../components/ChatMessage'
 import InputBox from '../components/InputBox';
 import {API, graphqlOperation, Auth} from 'aws-amplify';
@@ -14,7 +13,6 @@ const ChatRoomScreen = () => {
     const [messages, setMessages] = useState([]);
     const [myId, setMyId] = useState(null);
 
-    console.log("id ", currentChatRoomId);
     const fetchMessages = async() => {
       
         const messagesData = await API.graphql(graphqlOperation(messagesByChatRoom,{ chatRoomID: currentChatRoomId, sortDirection: "DESC" }));
@@ -42,7 +40,7 @@ const ChatRoomScreen = () => {
                     
                     const newMessage = data.value.data.OnCreateMessage;
                      // this notifications comes for every new message created and its our responsibility to check if it is for this chat romm or not
-                     console.log(data);
+                     console.log("subscription: ",data);
                     // if(newMessage.chatRoomID !== route.params.id) { // others message
                     //     return;
                     // }
@@ -53,9 +51,9 @@ const ChatRoomScreen = () => {
             
         
         // cleanup function
-        return () => subscription.unsubscribe();
+        // return () => subscription.unsubscribe();
     },[])
-    console.log(messages)
+
     return (
         <View style={{flex:1}}>
             
