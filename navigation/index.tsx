@@ -43,7 +43,7 @@ function RootNavigator() {
       <Stack.Screen name="Root"
        component={MainTabNavigator}
         options={{
-          title:'WhatsApp',
+          title:'Shader',
           headerTintColor: 'white',
           headerRight: () => {
             return(

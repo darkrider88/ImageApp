@@ -10,8 +10,8 @@ export type MainTabParamList = {
   Profile: undefined;
 };
 
-export type TabOneParamList = {
-  TabOneScreen: undefined;
+export type TabThreeParamList = {
+  Profile: undefined;
 };
 
 export type TabTwoParamList = {

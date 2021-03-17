@@ -7,7 +7,8 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ChatsScreen from '../screens/ChatsScreen';
 import ContactScreen from '../screens/ContactScreen';
-import { MainTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import ProfileScreen from '../screens/ProfileScreen';
+import { MainTabParamList,TabThreeParamList, TabTwoParamList } from '../types';
 
 const MainTab = createMaterialTopTabNavigator<MainTabParamList>();
 
@@ -42,7 +43,7 @@ export default function MainTabNavigator() {
       />
       <MainTab.Screen
         name="Profile"
-        component={TabTwoNavigator}
+        component={TabThreeNavigator}
         
       />
     </MainTab.Navigator>
@@ -52,7 +53,7 @@ export default function MainTabNavigator() {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const TabThreeStack = createStackNavigator<TabThreeParamList>();
 
 
 const TabTwoStack = createStackNavigator<TabTwoParamList>();
@@ -63,8 +64,20 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="Users"
         component={ContactScreen}
-        options={{ headerTitle: 'All users' }}
+        
       />
     </TabTwoStack.Navigator>
+  );
+}
+
+function TabThreeNavigator() {
+  return (
+    <TabThreeStack.Navigator>
+      <TabThreeStack.Screen
+        name="Profile"
+        component={ProfileScreen}
+        
+      />
+    </TabThreeStack.Navigator>
   );
 }

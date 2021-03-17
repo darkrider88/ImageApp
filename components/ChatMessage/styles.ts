@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginRight: 50,
         padding:10,
-        
+        width:'auto'
     },
     name: {
         color: Colors.light.tint,
@@ -18,12 +18,12 @@ const styles = StyleSheet.create({
         marginBottom:5
     },
     message: {
-        
+        fontSize:15
     },
     time: {
         alignSelf:'flex-end',
         fontSize:12,
-        color: 'grey'
+        color: 'rgb(49, 49, 49)'
     }
 
 })

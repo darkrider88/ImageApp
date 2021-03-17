@@ -55,7 +55,7 @@ const InputBox = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.mainContainer}>
-              <FontAwesome5 name="laugh-beam" size={24} color='grey'/>
+              {/* <FontAwesome5 name="laugh-beam" size={24} color='grey'/> */}
               <TextInput 
                 style={styles.textInput} 
                 multiline
@@ -65,8 +65,8 @@ const InputBox = (props) => {
                 onChangeText = {setMessage}
                 // scrollEnabled={true}
                 />
-              <Entypo name="attachment" size={20} color='grey' style={styles.icons}/>
-              {!message && <Fontisto name="camera" size={20} color='grey' style={styles.icons}/>}
+              {/* <Entypo name="attachment" size={20} color='grey' style={styles.icons}/>
+              {!message && <Fontisto name="camera" size={20} color='grey' style={styles.icons}/>} */}
             </View>
             <TouchableOpacity onPress={onPress}>
                 <View style={styles.buttonContainer}>
