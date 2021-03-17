@@ -18,7 +18,7 @@ const ChatListItem = (props: ChatListItemProps) => {
         const getOtherUser = async () => {
             try {
                 const userInfo = await Auth.currentAuthenticatedUser();
-                console.log("check: ", chatRoom.chatRoom.lastMessage.updatedAt); // do not remove this, app will crash
+                // console.log("check: ", chatRoom.chatRoom.lastMessage.updatedAt); // do not remove this, app will crash
                 if(chatRoom.chatRoom.chatRoomUsers.items[0].user.id === userInfo.attributes.sub) {
                     setOtherUser(chatRoom.chatRoom.chatRoomUsers.items[1].user);
                 } else {
@@ -50,7 +50,7 @@ const ChatListItem = (props: ChatListItemProps) => {
                 </View>  
             </View>
             {/* {moment(chatRoom.lastMessage.createdAt).format("DD/MM/YYYY")} */}
-            <Text style={styles.time}>{moment(chatRoom.chatRoom.lastMessage.updatedAt).format("DD/MM/YYYY")}</Text> 
+            <Text style={styles.time}>{chatRoom.chatRoom.lastMessage?moment(chatRoom.chatRoom.lastMessage.updatedAt).format("DD/MM/YYYY"):''}</Text> 
         </View>
         </TouchableOpacity>
     )

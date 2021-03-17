@@ -6,6 +6,8 @@ import InputBox from '../components/InputBox';
 import {API, graphqlOperation, Auth} from 'aws-amplify';
 import {messagesByChatRoom} from '../src/graphql/queries';
 import {onCreateMessage} from '../src/graphql/subscriptions';
+import {OnCreateChatRoomSubscription} from '../src/API'
+
 
 const ChatRoomScreen = () => {
     const route = useRoute();
@@ -36,11 +38,11 @@ const ChatRoomScreen = () => {
     useEffect(() => {
         const subscription = API.graphql(
             graphqlOperation(onCreateMessage)).subscribe({ 
-                next: (data) => {
+                next: ({provider, value}) => {
                     
-                    const newMessage = data.value.data.OnCreateMessage;
+                    
                      // this notifications comes for every new message created and its our responsibility to check if it is for this chat romm or not
-                     console.log("subscription: ",data);
+                     
                     // if(newMessage.chatRoomID !== route.params.id) { // others message
                     //     return;
                     // }
@@ -49,9 +51,10 @@ const ChatRoomScreen = () => {
                 }
             });
             
+             
         
         // cleanup function
-        // return () => subscription.unsubscribe();
+        return () => subscription.unsubscribe();
     },[])
 
     return (

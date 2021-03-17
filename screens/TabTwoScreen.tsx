@@ -1,32 +1,43 @@
-import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import { StyleSheet, FlatList, View} from 'react-native';
+import { API, graphqlOperation} from 'aws-amplify';
+import ContactListItem from '../components/ContactListItems';
+import { listUsers } from '../src/graphql/queries';
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
 
-export default function TabTwoScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
-    </View>
-  );
-}
+export default function ChatsScreen() {
+  const [user, setUser] = useState([]);
+  // fetching the users list from graphql api in aws
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await API.graphql(graphqlOperation(listUsers));
+        setUser(userData.data.listUsers.items)
+      } catch (error) {
+          console.error(error);
+      }
+    }
+    fetchUser();
+  },[])
+    return (
+      <View style={styles.container}>
+        <FlatList 
+          style={{width:'100%'}}
+          data={user}
+          renderItem={({item}) => <ContactListItem user={item}/>}
+          keyExtractor={(item) => item.id}
+        />
+       
+      </View>
+    );
+  }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor:'white',
+    },
+  
+  });

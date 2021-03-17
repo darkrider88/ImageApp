@@ -4,7 +4,7 @@ import ChatListItem from '../components/ChatListItems';
 import NewMessageButton from '../components/NewMessageButton';
 import { API, graphqlOperation, Auth} from 'aws-amplify'
 import {getUser} from './queries'
-import { onCreateChatRoom } from '../src/graphql/subscriptions'
+import { onUpdateChatRoom} from '../src/graphql/subscriptions'
 
 
 export default function ChatsScreen() {
@@ -13,11 +13,12 @@ export default function ChatsScreen() {
     try {
         const userInfo = await Auth.currentAuthenticatedUser();
         const userData = await API.graphql(graphqlOperation(getUser,{id: userInfo.attributes.sub}));
+        // console.log("chatrooms form: ",userData.data.getUser.chatRoomUser.items)
         setChatRooms(userData.data.getUser.chatRoomUser.items);
 
     } catch (e) {
         console.log(e)
-    }
+    } 
 }
   useEffect(() => {
    
@@ -25,8 +26,8 @@ export default function ChatsScreen() {
 }, []);
 
   useEffect(() => {
-    const subscription = API.graphql(graphqlOperation(onCreateChatRoom)).subscribe({
-      next: (data1) => fetchChatRooms(),
+    const subscription = API.graphql(graphqlOperation(onUpdateChatRoom)).subscribe({
+      next: (data:object) => {fetchChatRooms()},
       error: error => console.warn(error)
     });
 
@@ -42,7 +43,7 @@ export default function ChatsScreen() {
         renderItem={({item}) => <ChatListItem chatRoom={item}/>}
         keyExtractor={(item) => item.id}
       />
-      <NewMessageButton/>
+      
     </View>
   );
 }
