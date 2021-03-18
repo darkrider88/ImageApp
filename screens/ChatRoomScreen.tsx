@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import { View, Text,FlatList } from 'react-native'
+import { View, ImageBackground,FlatList } from 'react-native'
 import {useRoute} from '@react-navigation/native';
 import ChatMessage from '../components/ChatMessage'
 import InputBox from '../components/InputBox';
 import {API, graphqlOperation, Auth} from 'aws-amplify';
 import {messagesByChatRoom} from '../src/graphql/queries';
 import {onCreateMessage} from '../src/graphql/subscriptions';
-import {OnCreateChatRoomSubscription} from '../src/API'
+
 
 
 const ChatRoomScreen = () => {
@@ -42,10 +42,9 @@ const ChatRoomScreen = () => {
                     
                     
                      // this notifications comes for every new message created and its our responsibility to check if it is for this chat romm or not
-                     
-                    // if(newMessage.chatRoomID !== route.params.id) { // others message
-                    //     return;
-                    // }
+                    if(value.data.onCreateMessage.chatRoomID !== route.params.id) { // others message
+                        return;
+                    }
                     fetchMessages();
                     // setMessages([newMessage,...messages]);
                 }
@@ -59,14 +58,16 @@ const ChatRoomScreen = () => {
 
     return (
         <View style={{flex:1}}>
-            
+            <ImageBackground source={require('../assets/images/background.jpg')} style={{flex:1}}>
             <FlatList 
                 data={messages}
                 renderItem={({item}) => <ChatMessage myId={myId} message={item}/>}
                 inverted
             />
+        </ImageBackground>
             <InputBox chatRoomID={currentChatRoomId}/>
         </View>
+        
     )
 }
 

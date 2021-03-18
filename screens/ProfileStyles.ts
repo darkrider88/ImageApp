@@ -1,7 +1,7 @@
 import {StyleSheet, Dimensions } from 'react-native'
 
 const WIDTH = Dimensions.get('window').width;
-const HEIGHT = 165;
+const HEIGHT = 175;
 
 const styles = StyleSheet.create({
     container: {
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
         borderWidth:1,
         borderColor: 'grey',
         marginTop:20,
+        
     },
     username: {
         fontSize:20,
@@ -87,8 +88,12 @@ const styles = StyleSheet.create({
         fontWeight:'700',
         marginTop: 10,
     },
+    errorMsg: {
+        fontWeight: '700',
+        color: 'red'
+    },
     submitButton: {
-        marginTop: 20,
+        marginTop: 10,
         marginBottom: 10,
         backgroundColor:'rgb(16, 21, 27)',
         width:80,
@@ -100,6 +105,10 @@ const styles = StyleSheet.create({
     },
     submitButtonText: {
         color: 'white'
+    },
+    activityIndicator: {
+        position: 'absolute',
+        
     }
   });
 

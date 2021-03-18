@@ -1,7 +1,7 @@
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import { ColorSchemeName, View } from 'react-native';
+import { ColorSchemeName, View, TouchableOpacity, ToastAndroid } from 'react-native';
 import Colors from '../constants/Colors';
 import { Octicons, MaterialCommunityIcons, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import NotFoundScreen from '../screens/NotFoundScreen';
@@ -27,6 +27,10 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 // Read more here: https://reactnavigation.org/docs/modal
 const Stack = createStackNavigator<RootStackParamList>();
 
+function toastNotify() {
+  ToastAndroid.show('I am not able to put all the features at once, but thankyou for using my App!', ToastAndroid.LONG)
+}
+
 function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ 
@@ -49,8 +53,9 @@ function RootNavigator() {
             return(
               <View style={{flexDirection:'row',width:90,justifyContent:'space-around',alignItems:'center'}}>
               <Octicons name='search' size = {20} color = 'white'/>
-              
-              <MaterialCommunityIcons name = 'dots-vertical' size={24} color = 'white'/>
+              <TouchableOpacity onPress={toastNotify}>
+                <MaterialCommunityIcons name = 'dots-vertical' size={24} color = 'white'/>
+              </TouchableOpacity>
             </View>
             )
           }
@@ -62,12 +67,15 @@ function RootNavigator() {
           headerTintColor: 'white',
           headerRight: () => {
             return(
-          <View style={{flexDirection:'row',width:120,justifyContent:'space-around',alignItems:'center'}}  >
+            <TouchableOpacity onPress={toastNotify}>
+          <View style={{flexDirection:'row',width:120,justifyContent:'space-around',alignItems:'center'}}>
+
               <MaterialIcons name="call" size={22} color={'white'} />
               <FontAwesome5 name="video" size={19} color={'white'} />
               <MaterialCommunityIcons name="dots-vertical" size={22} color={'white'} />
 
-            </View>)
+            </View>
+            </TouchableOpacity>)
           },
           
         })} />

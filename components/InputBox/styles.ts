@@ -6,6 +6,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         margin:10,
         alignItems:'center',
+        
+        
     },
     mainContainer: {
         flexDirection: 'row',
