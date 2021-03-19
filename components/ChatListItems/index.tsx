@@ -12,7 +12,7 @@ type ChatListItemProps = {
 const ChatListItem = (props: ChatListItemProps) => {
     const {chatRoom} = props;
     const navigation = useNavigation();
-    
+    // console.log("hmmm; ", props);
     const [otherUser, setOtherUser] = useState(null);
     useEffect(() => {
         const getOtherUser = async () => {

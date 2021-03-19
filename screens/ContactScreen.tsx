@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, FlatList, View} from 'react-native';
-import { API, graphqlOperation} from 'aws-amplify';
+import { API, Auth, graphqlOperation} from 'aws-amplify';
 import ContactListItem from '../components/ContactListItems';
 import { listUsers } from '../src/graphql/queries';
 import {onUpdateUser} from '../src/graphql/subscriptions';
@@ -11,7 +11,12 @@ export default function ChatsScreen() {
   const fetchUser = async () => {
     try {
       const userData = await API.graphql(graphqlOperation(listUsers));
-      setUser(userData.data.listUsers.items)
+      const userList = userData.data.listUsers.items;
+      const currentUser = await Auth.currentAuthenticatedUser();
+      //  removing the contact if it is mine
+      const newList = userList.filter((item) => item.id !== currentUser.attributes.sub);
+      
+      setUser(newList);
     } catch (error) {
         console.error(error);
     }

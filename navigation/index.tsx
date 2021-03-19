@@ -31,6 +31,10 @@ function toastNotify() {
   ToastAndroid.show('I am not able to put all the features at once, but thankyou for using my App!', ToastAndroid.LONG)
 }
 
+function headerFun() {
+  ToastAndroid.show('hey', ToastAndroid.SHORT);
+}
+
 function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ 
@@ -46,17 +50,18 @@ function RootNavigator() {
     }}>
       <Stack.Screen name="Root"
        component={MainTabNavigator}
+      
         options={{
           title:'Shader',
           headerTintColor: 'white',
           headerRight: () => {
             return(
+              <TouchableOpacity onPress={toastNotify}>
               <View style={{flexDirection:'row',width:90,justifyContent:'space-around',alignItems:'center'}}>
               <Octicons name='search' size = {20} color = 'white'/>
-              <TouchableOpacity onPress={toastNotify}>
                 <MaterialCommunityIcons name = 'dots-vertical' size={24} color = 'white'/>
-              </TouchableOpacity>
             </View>
+              </TouchableOpacity>
             )
           }
           }} />

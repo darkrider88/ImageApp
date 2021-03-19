@@ -9,6 +9,8 @@ npm-debug.*
 *.orig.*
 web-build/
 
+shader-key.keystore
+
 # macOS
 .DS_Store
 

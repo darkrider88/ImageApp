@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { View, ImageBackground,FlatList } from 'react-native'
+import { View, ImageBackground,FlatList, ActivityIndicator } from 'react-native'
 import {useRoute} from '@react-navigation/native';
 import ChatMessage from '../components/ChatMessage'
 import InputBox from '../components/InputBox';
@@ -14,11 +14,17 @@ const ChatRoomScreen = () => {
     const currentChatRoomId = route.params.id;
     const [messages, setMessages] = useState([]);
     const [myId, setMyId] = useState(null);
-
+    const [isLoading, setIsLoading] = useState(false);
     const fetchMessages = async() => {
-      
-        const messagesData = await API.graphql(graphqlOperation(messagesByChatRoom,{ chatRoomID: currentChatRoomId, sortDirection: "DESC" }));
-        setMessages(messagesData.data.messagesByChatRoom.items);
+        try {
+            setIsLoading(true);
+            const messagesData = await API.graphql(graphqlOperation(messagesByChatRoom,{ chatRoomID: currentChatRoomId, sortDirection: "DESC" }));
+            setMessages(messagesData.data.messagesByChatRoom.items);
+            setIsLoading(false);
+        } catch (error) {
+            console.log(error);
+        }
+        
     }
 
     useEffect(() => {
@@ -59,6 +65,7 @@ const ChatRoomScreen = () => {
     return (
         <View style={{flex:1}}>
             <ImageBackground source={require('../assets/images/background.jpg')} style={{flex:1}}>
+            <ActivityIndicator style={{position:'absolute',alignSelf:'center',top:'40%'}} size="large" color="white" animating={isLoading} />
             <FlatList 
                 data={messages}
                 renderItem={({item}) => <ChatMessage myId={myId} message={item}/>}

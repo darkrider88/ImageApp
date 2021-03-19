@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "whatsappClone",
-    "slug": "whatsappClone",
+    "name": "Shader messenger",
+    "slug": "Shader",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -9,7 +9,7 @@
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
@@ -23,9 +23,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.darkrider88.shader"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
