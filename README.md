@@ -5,8 +5,8 @@ This is my first App, so it does have some minor bugs but the messaging function
 
 # Screenshots
 
-![splash screen](screenshots/shader1.png)
-![users screen](screenshots/shader2.png)
-![chats screen](screenshots/shader3.png)
-![profile screen](screenshots/shader4.png)
-![message screen](screenshots/shader5.png)
+![splash screen](screenshots/shader1.png | width=360)
+![users screen](screenshots/shader2.png |width=360)
+![chats screen](screenshots/shader3.png | width=360)
+![profile screen](screenshots/shader4.png | width=360)
+![message screen](screenshots/shader5.png | width=360)
