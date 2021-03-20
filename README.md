@@ -5,9 +5,11 @@ This is my first App, so it does have some minor bugs but the messaging function
 
 # Screenshots
 
-<img src="https://github.com/darkrider88/Shader-messenger/blob/main/screenshots/shader1.png" width="340"/>
-<img src="https://github.com/darkrider88/Shader-messenger/blob/main/screenshots/shader2.png" width="340"/>
-<img src="https://github.com/darkrider88/Shader-messenger/blob/main/screenshots/shader3.png" width="340"/>
-<img src="https://github.com/darkrider88/Shader-messenger/blob/main/screenshots/shader4.png" width="340"/>
-<img src="https://github.com/darkrider88/Shader-messenger/blob/main/screenshots/shader5.png" width="340"/>
-
+<div>
+<img src="https://github.com/darkrider88/Shader-messenger/blob/main/screenshots/shader1.png" width="300" height="400" />
+<img src="https://github.com/darkrider88/Shader-messenger/blob/main/screenshots/shader2.png" width="300" height="400"/>
+<img src="https://github.com/darkrider88/Shader-messenger/blob/main/screenshots/shader3.png" width="300" height="400"/>
+<img src="https://github.com/darkrider88/Shader-messenger/blob/main/screenshots/shader4.png" width="300" height="400"/>
+<img src="https://github.com/darkrider88/Shader-messenger/blob/main/screenshots/shader5.png" width="300" height="400"/>
+</div>
+png
