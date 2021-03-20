@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useState} from 'react'
 import { View, Text,Image, TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
 import styles from './styles';
 import { User } from '../../types';
@@ -30,6 +30,7 @@ const getChatRoomById = `
 
 const ContactListItem  = (props: ContactListItemProps) => {
     const {user} = props;
+    const [userId, setUserId] = useState(''); // current user
     const navigation = useNavigation();
 
     // checking if the chatroom already exist?
@@ -45,14 +46,22 @@ const ContactListItem  = (props: ContactListItemProps) => {
                 // comparing if the clicked user is already in some chatroom with me   
                 const usersInRoom = rooms.data.getChatRoom.chatRoomUsers.items; // [ {user: {id, name}}, {user: {id,name}}]
                 
-                for(let j=0; j < usersInRoom.length; j++){    
+                // for(let j=0; j < usersInRoom.length; j++){    
                              
-                    if(usersInRoom[j].user.id === userToCheckID){ // comparing the user id with the user props id
-                       return chatroomList[i]; //id of the chatroom
-                    }
+                //     if(usersInRoom[j].user.id === userToCheckID || usersInRoom[j].user.id === userId ){ // comparing the user id with the user props id
+                //        if(usersInRoom[j].user.id === userToCheckID || usersInRoom[j].user.id === userId)
+                //             return chatroomList[i]; //id of the chatroom
+                //     }
+                // }
+                console.log("users ",usersInRoom)
+                if( (usersInRoom[0].user.id === userToCheckID && usersInRoom[1].user.id === userId) || (usersInRoom[1].user.id === userToCheckID && usersInRoom[0].user.id === userId) )
+                {    
+                    console.log('passed', chatroomList[i]);
+                    return chatroomList[i]
                 }
             }
             // if not in any chatroom return false
+            console.log('check failed')
             return false;    
     }
 
@@ -61,7 +70,7 @@ const ContactListItem  = (props: ContactListItemProps) => {
             // checking if the chatroom already exist?
             console.log("user id ", user.id)
             let isChatRoomId = await isUserInChatRoom(user.id);
-            console.log("Chatroom: " , isChatRoomId);
+            
             if(isChatRoomId){
                 // open up the chatroom
                 navigation.navigate('ChatRoomScreen', {
@@ -84,7 +93,7 @@ const ContactListItem  = (props: ContactListItemProps) => {
                 // add your self to chatroom
                 const userInfo = await Auth.currentAuthenticatedUser();
                 await API.graphql(graphqlOperation(createChatRoomUser, {input: {userID: userInfo.attributes.sub, chatRoomID: newChatRoom.id}}))
-
+                setUserId(userInfo.attributes.sub)
 
                 // open up the chatroom
                 navigation.navigate('ChatRoomScreen', {

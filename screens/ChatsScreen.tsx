@@ -14,7 +14,7 @@ export default function ChatsScreen() {
         setIsLoading(true);
         const userInfo = await Auth.currentAuthenticatedUser();
         const userData = await API.graphql(graphqlOperation(getUser,{id: userInfo.attributes.sub}));
-        console.log("chatrooms form: ",userData.data.getUser.chatRoomUser.items);
+        
         setChatRooms(userData.data.getUser.chatRoomUser.items);
         setIsLoading(false);
 

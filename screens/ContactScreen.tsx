@@ -15,7 +15,6 @@ export default function ChatsScreen() {
       const currentUser = await Auth.currentAuthenticatedUser();
       //  removing the contact if it is mine
       const newList = userList.filter((item) => item.id !== currentUser.attributes.sub);
-      
       setUser(newList);
     } catch (error) {
         console.error(error);
